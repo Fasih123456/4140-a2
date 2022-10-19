@@ -11,18 +11,19 @@ const PO = require("../models/purchaseOrder");
 const parts = require("../models/parts");
 
 
+//Renders the add purchase order page
 router.get("/add-product", (req, res, next) => {
   res.render('addPurchaseOrder')
 });
 
+//renders the get parts page
 router.get("/get-all", (req, res, next) => {
       res.render('parts', {
        parts: []
     })
 })
 
-//parts, PO and the lines 
-
+//handles post request made by the parts page
 router.post("/admin/get-all", (req, res,next) => {
   const body = req.body;
   const poId = body.poId;
@@ -38,6 +39,8 @@ router.post("/admin/get-all", (req, res,next) => {
   })
 })
 
+
+//Renders the retreve purchase order page
 router.get('/', (req, res, next) => {
     res.render('retrievePurchaseOrder', {
         purchaseOrders: [],
@@ -45,8 +48,8 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/')
 
+//handles post request made by the parts page
 router.post("/admin/retreive-po", (req, res,next) => {
   const body = req.body;
   const poId = body.poId;
@@ -83,12 +86,12 @@ poNo116: 2,
 })
 
 
-// /admin/add-product => POST
+//handles post request made by the parts page
 router.post("/admin/add-po", (req, res, next) => {
   const body = req.body;
   const bodyLength = Object.keys(body).length;
   const bodyArray = Object.values(body);
-  console.log(bodyArray);
+  console.log("This is the information which was taken from the add purchase order" ,bodyArray);
 
   let poId = bodyArray[0];
   let parts = [];
@@ -102,7 +105,7 @@ router.post("/admin/add-po", (req, res, next) => {
     let qty = bodyArray[i + 1];
     let price = bodyArray[i + 2];
     let priceOrdered = qty * price;
-    console.log("priceordered", priceOrdered);
+    //console.log("priceordered", priceOrdered);
 
     let newPO = new PO(poId, clientId, todaysdate, "Order Placed");
     newPO.save();
@@ -110,18 +113,19 @@ router.post("/admin/add-po", (req, res, next) => {
     let newLine = new lines(poId, linenumber, partnumber, qty, priceOrdered);
     newLine.save();
   }
-  console.log(parts);
+  //console.log(parts);
 
   res.redirect("/");
 });
 
-// /admin/add-product => GET
+//renders the get vendores page
 router.get("/get-vendors", (req, res, next) => {
   res.render('vendors', {
     vendors: []
   })
 });
 
+//handles post request made by the parts page
 router.post("/admin/submit-clientid", (req, res,next) => {
     var response;
     const clientId = req.body.clientId;
@@ -138,6 +142,7 @@ router.post("/admin/submit-clientid", (req, res,next) => {
 
 })
 
+//Normal javascript function which gets the current date for purchase orders
 function getDate() {
   const date = new Date();
   let day = date.getDate();

@@ -10,7 +10,7 @@ module.exports = class Lines {
   }
 
   save() {
-    console.log("save", this.poNo, this.lineNO, this.partNo, this.qty, this.priceOrdered);
+    console.log("Line saved", this.poNo, this.lineNO, this.partNo, this.qty, this.priceOrdered);
 
     return database.execute(
       `INSERT INTO Lines116 (poNo116, lineNo116, partNo116, qty116, priceOrdered116) VALUES (?, ?, ?, ?, ?)`,
