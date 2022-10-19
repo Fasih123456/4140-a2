@@ -15,7 +15,8 @@ This readme file is realted to assigment 2 for 4140. This project was creating n
 1. All bugs which i know have appropriate error handling applied to them so you dont have to worry about anything, hopefully the program does not crash :) 
 
 ## How to run this Project
-1. Run command "npm install" //I am assuming that the marker has node and installed already
-2. Run command "node app.js"
-3. Enter url "localhost:3000" in any browser
+1. Clone repo using github link provide on line 9
+2. Run command "npm install" //I am assuming that the marker has node and installed already
+3. Run command "node app.js"
+4. Enter url "localhost:3000" in any browser
 
