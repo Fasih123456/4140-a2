@@ -1,0 +1,88 @@
+<!--
+    Task to complete
+    1. Retireve list of parts from DB (Completed)
+        a. No need to display parts (Completed)
+        b. QOH should not be fetched (Completed)
+    2. User should be able to retreive information about Purchase order just using PO (Completed)
+        a. Method should retreive everything related in the lines table. (Completed)
+    3. User should be able to see all the vendoers which a client is dealing with just using the client ID (Completed)
+    4. User should be able to submit PO and all the lines inside of it (Completed)
+    5. User should be able to get information about parts, PO and the lines on the PO using our interface.
+    6. User should be able to see information when they submit a PO
+-->
+
+<%- include('head.ejs') %>
+
+
+    <main>
+      <h2>Adding purchase Order</h2>
+      <form class="product-form" action="/admin/add-po" method="POST" id="form1">
+        <div id="form-control" class="form-control">
+          <label for="poId">Purchase Order Number</label>
+          <input type="number" name="poId" id="poId" />
+          <h3>Part 1 Information</h3>
+          <label for="partnumber1">Part Number</label>
+          <input type="number" name="partnumber1" id="partnumber1" />
+          <label for="qty1">quantity ordered</label>
+          <input type="number" name="qty1" id="qty1" />
+          <label for="price1">Price</label>
+          <input type="number" name="price1" id="price1" />
+        </div>
+
+        <button type="submit">Add Purchase Order</button>
+        <button onclick="addPart()">Add Part</button>
+      </form>
+    </main>
+  </body>
+</html>
+
+<script>
+  let partnumber = 1;
+  function addPart() {
+    partnumber++;
+    event.preventDefault();
+    let div = document.getElementById("form-control");
+
+    var heading = document.createElement("h3");
+    var headingTxt = document.createTextNode(`Part ${partnumber} Information`);
+    heading.append(headingTxt);
+
+    div.append(heading);
+
+    var label1 = document.createElement("label");
+    label1.setAttribute("for", `partnumber${partnumber}`);
+    var label1Text = document.createTextNode("Part Number");
+    label1.append(label1Text);
+
+    var input1 = document.createElement("input");
+    input1.setAttribute("id", `partnumber${partnumber}`);
+    input1.setAttribute("name", `partnumber${partnumber}`);
+    input1.setAttribute("type", "number");
+
+    div.append(label1, input1);
+
+    var label2 = document.createElement("label");
+    label2.setAttribute("for", `qty${partnumber}`);
+    var label2Text = document.createTextNode("Quantity Ordered");
+    label2.append(label2Text);
+
+    var input2 = document.createElement("input");
+    input2.setAttribute("id", `qty${partnumber}`);
+    input2.setAttribute("name", `qty${partnumber}`);
+    input2.setAttribute("type", "number");
+
+    div.append(label2, input2);
+
+    var label3 = document.createElement("label");
+    label3.setAttribute("for", `price${partnumber}`);
+    var label3Text = document.createTextNode("Price");
+    label3.append(label3Text);
+
+    var input3 = document.createElement("input");
+    input3.setAttribute("id", `price${partnumber}`);
+    input3.setAttribute("name", `price${partnumber}`);
+    input3.setAttribute("type", "number");
+
+    div.append(label3, input3);
+  }
+</script>

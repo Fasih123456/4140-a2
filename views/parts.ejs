@@ -1,0 +1,33 @@
+<%- include('head.ejs') %>
+
+
+    <main>
+      <h2>Get your Part No and Line No Details</h2>
+      <form class="product-form" action="/admin/get-all" method="POST" id="form1">
+        <div id="form-control" class="form-control">
+          <label for="poId">Purchase Order Number</label>
+          <input type="number" name="poId" id="poId" />
+
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+
+                    <% if (parts.length > 0) { %>
+                <ul class="cart__item-list">
+                    <% parts.forEach(p => { %>
+                        <li class="cart__item">
+                            <h2>Purchase Order Number: <%= p.poNo116 %></h2>
+                            <p>Part No: <%= p.partNo116 %></p>
+                            <p>Line No: <%= p.lineNo116 %></p>
+
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <h1>Please Search for a purchase order number</h1>
+            <% } %>
+    </main>
+  </body>
+</html>
